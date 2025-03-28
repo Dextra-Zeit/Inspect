@@ -27,10 +27,9 @@
 
         /* Modal Container */
         .custom-modal {
-            position: fixed;
-            top: 50%;
+            position: absolute;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, 0);
             background-color: #222;
             color: #ddd;
             padding: 20px;
@@ -41,7 +40,6 @@
             max-width: 90%;
             height: auto;
             overflow: auto;
-            position: relative;
             animation: fadeIn 0.3s ease-out;
         }
 
@@ -142,9 +140,24 @@
         currentElement = element;
         overlay.style.display = 'block';
         modal.style.display = 'block';
+
+        updateModalPosition();
         updateParentSelector();
         updateEditor();
     }
+
+    // Function to update modal position dynamically
+    function updateModalPosition() {
+        const viewportHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+        const modalHeight = modal.offsetHeight;
+        
+        let newY = scrollY + viewportHeight / 2 - modalHeight / 2;
+        modal.style.top = `${newY}px`;
+    }
+
+    // Update modal position on scroll
+    window.addEventListener('scroll', updateModalPosition);
 
     function updateParentSelector() {
         parentSelect.innerHTML = '';
