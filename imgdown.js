@@ -1,4 +1,4 @@
-function scanAndDisplayMedia() {
+(function() {
     console.log("Scanning for media...");
 
     // Supported media file extensions
@@ -264,4 +264,4 @@ function scanAndDisplayMedia() {
     document.body.appendChild(buttonContainer);
 
     console.log("Media overlay initialized.");
-}
+})();
